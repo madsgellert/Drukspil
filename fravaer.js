@@ -4,7 +4,7 @@
   </head>
   <body>
     <h1>Check-in system</h1>
-    <p>Skriv dit navn i boksen nedenfor:</p>
+    <p>Skriv dit navn i boksen nedenfor.:</p>
     <input id="name" type="text">
     <button onclick="checkIn()">Check-in</button>
     <table id="checkIns">
@@ -70,4 +70,7 @@
         dist = dist * 1.609344;
         return dist;
       };
-   
+       </script>
+  </body>
+</html>
+
