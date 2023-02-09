@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <script>
+      function checkIn() {
+        var name = document.getElementById("nameInput").value;
+        document.getElementById("displayName").innerHTML = name;
+      }
+    </script>
+  </head>
+  <body>
+    <input type="text" id="nameInput">
+    <button onclick="checkIn()">Check In</button>
+    <p id="displayName"></p>
+  </body>
+</html>
