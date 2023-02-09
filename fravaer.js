@@ -4,7 +4,7 @@
   </head>
   <body>
     <h1>Check-in system</h1>
-    <p>Skriv dit navn i boksen nedenfor.:</p>
+    <p>Skriv dit navn i boksen nedenfor:</p>
     <input id="name" type="text">
     <button onclick="checkIn()">Check-in</button>
     <table id="checkIns">
@@ -15,8 +15,6 @@
       </tr>
     </table>
     <script>
-      let checkIns = [];
-
       const checkIn = () => {
         const name = document.getElementById("name").value;
         if (!name) {
@@ -33,26 +31,16 @@
             longitude
           );
           if (distance < 50) {
+            const checkIns = document.getElementById("checkIns");
             const date = new Date();
-            checkIns.push({ name, time: date.toLocaleTimeString(), date: date.toLocaleDateString() });
-            renderCheckIns();
+            const newRow = checkIns.insertRow(-1);
+            newRow.insertCell(0).innerHTML = name;
+            newRow.insertCell(1).innerHTML = date.toLocaleTimeString();
+            newRow.insertCell(2).innerHTML = date.toLocaleDateString();
             alert("Check-in succesfuld");
           } else {
             alert("Du befinder dig for langt væk");
           }
-        });
-      };
-
-      const renderCheckIns = () => {
-        const table = document.getElementById("checkIns");
-        while (table.rows.length > 1) {
-          table.deleteRow(1);
-        }
-        checkIns.forEach((checkIn) => {
-          const newRow = table.insertRow(-1);
-          newRow.insertCell(0).innerHTML = checkIn.name;
-          newRow.insertCell(1).innerHTML = checkIn.time;
-          newRow.insertCell(2).innerHTML = checkIn.date;
         });
       };
 
@@ -70,7 +58,6 @@
         dist = dist * 1.609344;
         return dist;
       };
-       </script>
+    </script>
   </body>
 </html>
-
