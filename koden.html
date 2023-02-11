@@ -2,6 +2,13 @@
 <head>
 
     <link rel="manifest" href="/manifest.json    ">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="My PWA">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+
 
 
 
@@ -134,6 +141,22 @@
   </script>
 </head>
 <body>
+    
+    <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+        // Registreringen lykkedes
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }, function(err) {
+        // Registreringen fejlede
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
+  }
+</script>
+
+    
   <h1>Drukspillet</h1>
   <t2>Lavet af Mads Gellert</t2>
   <p id="text">Velkommen</p>
