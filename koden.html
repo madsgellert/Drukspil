@@ -1,0 +1,144 @@
+<html>
+<head>
+
+    <link rel="manifest" href="/manifest.json    ">
+
+
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: lightcyan;
+    }
+    #background-img {
+      width: 100%;
+      height: 600px;
+      background-image: url("https://vildmed-oel.dk/wp-content/uploads/2022/03/logo-vildmed.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin: 40px 0;
+    }
+    h1 {
+      font-size: 70px;
+      margin-top: 50px;
+     
+    }
+    t2 {
+      font-size: 20px;
+      margin-top: 50px;
+    }
+    #text {
+      font-size: 40px;
+      margin: 10px 0;
+    }
+    button {
+      background-color: darkcyan;
+      font-family: Arial, sans-serif, cursive;
+      color: white;
+      padding: 25px 40px;
+      border: none;
+      border-radius: 20px;
+      margin: 30px;
+      cursor: pointer;
+      font-size: 30px;
+    }
+  </style>
+  <script>
+    var texts = [
+    "Velkommen",
+    "Mim en af de andre spillere - de andre skal gætte hvem",
+    "Stå op indtil det er din tur igen",
+    "Hvem er mest tilbøjelig til at få nye venner i byen?",
+    "Hvem er mest tilbøjelig til at foreslå en tur på stripklub?",
+    "Mim et dyr de andre skal gætte. Den første der gætter rigtigt, giver 3 slurke ud",
+    "Personen med lavest batteriprocent må give 2 slurke ud",
+    "Classic eller Pilsner? Alle stemmer på samme tid – mindretallet drikker",
+    "Drik hvis du i hemmelighed har haft et crush på en i rummet",
+    "Drik for hver tatovering du har og vis dem",
+        "Fuck, Marry, Kill – de andre vælger 3 navne til dig",
+    "Hvem er mest tilbøjelig til at fake en sygedag for at slippe for arbejde?",
+    "Hvis du har tinder skal du swipe til højre i 1 minut",
+    "Dameskål",
+    "Alle singler drikker",
+    "Den der er mest underdressed drikker",
+    "Hvad vil du helst: Have en trekant med Sussi og Leo eller spise McD-mad hver dag resten af dit liv?",
+    "Top or bottom? Alle stemmer samtidig – overtallet drikker",
+    "Udvælg sammen den største svagdrikker i rummet. Personen må dele 3 tåre ud",
+    "Drik kun med venstre resten af spillet. Bliver du taget i at bruge højre skal du drikke",
+    "Alle med lyst hår drikker",
+    "Drik hvis du har postet en story i dag",
+    "Hvem er mest tilbøjelig til at få en grim tatovering?",
+    "Drik hvis du ikke har været i bad i dag",
+    "Den der oftest bruger flest penge i byen må give 2 slurke ud",
+    "Alle tager en tår for hvert lyn de fik i huen",
+    "Yngste spiller skal drikke",
+    "Hvis du kan gætte hvilken farve undertøj din sidemakker til højre har, skal de drikke",
+    "Den næste der har fødselsdag skal drikke",
+        "Kiss or Slap med den nærmeste sidemakker til højre af modsatte køn (sidemakkeren kisser/slapper)",
+    "Drik ikke før det er din tur igen",
+    "Alle tager en tår for hvert lyn de har givet",
+    "Fortæl en historie som både kan være sket, da du var barn eller fulde. Drik hvis de andre gætter rigtigt og omvendt",
+    "Svar på en sandhed fra de andre",
+        "Er i tørstige? - Alle bunder deres drink",
+    "Drik hvis du har haft sex med en i dette rum",
+    "Udfør en konsekvens som de andre finder på til dig",
+        "Fuck, Marry, Kill – de andre vælger 3 navne til dig",
+    "Alle der drikker en øl tager en slurk",
+    "Drik hvis du har tinder",
+    "Hvem er mest tilbøjelig til at starte en slåskamp?",
+    "Drik hvis du skal score i aften",
+    "Drik hvis du har haft en bolleven",
+    "Alle der er lavere end den person der trak kortet skal drikke",
+    "Drik lige så mange slurke som størrelsen på din BH (må gives videre til en pige). A=1, B=2, C=3 osv.",
+    "Alle der har et kondom på sig drikker 2 slurke",
+    "Tag en slurk af din drink uden at bruge dine hænder",
+    "Den højeste spiller skal drikke",
+    "Drenge skål",
+    "Hvem i dette rum er mest tilbøjelig til at melde sig til Paradise/True Love/Bachelorette/Ex on the Beach?",
+    "Peg på den der har lavet den største fulde-bommert - personen drikker og fortæller historien",
+    "Drik hvis du har en bil",
+    "Ældste spiller drikker",
+    "Drik hvis du har set porno med en partner",
+    "Hvad vil du helst: Slikke på tåen af den person, der sidder til højre for dig, eller snave den person, der sidder til venstre for dig?",
+    "Alle der har haft farvet deres hår drikker",
+    "Den laveste spiller drikker",
+        "Fuck, Marry, Kill – de andre vælger 3 navne til dig",
+    "Nyn en sang de andre skal gætte", 
+    "Hvem i dette rum har lavet et sex-tape?",
+    "Pigen med den største BH må dele 2 slurke ud", 
+        "Kiss or Slap med den nærmeste sidemakker til venstre af modsatte køn (sidemakkeren kisser/slapper)", 
+    "Alle peger på den med dårligste stedsans. Han/hun drikker", 
+    "Alle med brunt hår drikker",
+    "Spil 'Svar med et spørgsmål'. Peg på én og stil et spørgsmål. Personen stiller et nyt spørgmsål til en anden - det skal gå hurtigt. Drik hvis du fucker up!"
+
+    ];
+    var currentIndex = 0;
+
+    function showPreviousText() {
+      currentIndex--;
+      if (currentIndex < 0) {
+        currentIndex = texts.length - 1;
+      }
+      document.getElementById("text").innerHTML = texts[currentIndex];
+    }
+
+    function showNextText() {
+      currentIndex++;
+      if (currentIndex >= texts.length) {
+        currentIndex = 0;
+      }
+      document.getElementById("text").innerHTML = texts[currentIndex];
+    }
+  </script>
+</head>
+<body>
+  <h1>Drukspillet</h1>
+  <t2>Lavet af Mads Gellert</t2>
+  <p id="text">Velkommen</p>
+  <button onclick="showPreviousText()">Forrige</button>
+  <button onclick="showNextText()">Næste</button>
+  <div id="background-img"></div>
+</body>
+</html>
