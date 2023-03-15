@@ -1,0 +1,230 @@
+<html>
+<head>
+
+    
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Drukspillet">
+    
+    
+<link rel="apple-touch-icon" sizes="192x192" href="app-ikon2.png">
+<link rel="icon" type="image/png" sizes="192x192" href="app-ikon2.png">    
+<link rel="manifest" href="/manifest.json">
+    
+
+
+
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: lightcyan;
+  }
+  #background-img {
+    width: 100%;
+    height: 600px;
+    background-image: url("baggrund (1).png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 40px 0;
+  }
+  h1 {
+    font-size: 70px;
+    margin-top: 50px;
+  }
+  t2 {
+    font-size: 20px;
+    margin-top: 50px;
+  }
+  #text {
+    font-size: 40px;
+    margin: 10px 0;
+  }
+  button {
+    background-color: darkcyan;
+    font-family: Arial, sans-serif, cursive;
+    color: white;
+    padding: 25px 40px;
+    border: none;
+    border-radius: 20px;
+    margin: 30px;
+    cursor: pointer;
+    font-size: 30px;
+  }
+
+  @media (max-width: 767px) {
+    #background-img {
+      height: 400px;
+    }
+    h1 {
+      font-size: 40px;
+    }
+    t2 {
+      font-size: 20px;
+    }
+    #text {
+      font-size: 30px;
+    }
+    button {
+      padding: 15px 25px;
+      font-size: 20px;
+    }
+  }
+</style>
+
+  
+  
+  <script src="hammer.min.js"></script> <!-- Tilføjet denne linje for at linke til hammer.js --> 
+   
+  
+  
+  <script>
+    var texts = [
+    
+    "Mim en af de andre spillere - de andre skal gætte hvem. Alle tager en tår",
+    "Stå op indtil det er din tur igen",
+    "Hvem er mest tilbøjelig til at få nye venner i byen? Personen drikker 2 tåre",
+    "Hvem er mest tilbøjelig til at foreslå en tur på stripklub? Personen drikker 1 tår",
+    "Mim et dyr de andre skal gætte. Den første der gætter rigtigt, giver 3 slurke ud",
+    "Personen med lavest batteriprocent må give 2 slurke ud",
+    "Classic eller Pilsner? Alle stemmer på samme tid – mindretallet drikker",
+    "Drik hvis du i hemmelighed har haft et crush på en i rummet - Gælder alle i rummet",
+    "Drik for hver tatovering du har og vis dem frem. Antallet af tatoveringer = antal tåre du må give ud",
+    "Fuck, Marry, Kill – de andre vælger 3 navne til dig",
+    "Hvem er mest tilbøjelig til at fake en sygedag for at slippe for arbejde? Personen drikker",
+    "Hvis du har tinder skal du swipe til højre i 1 minut. Hvis ikke drik 1 tår",
+    "Hvis du har tinder, må de andre vælger en besked du skal sende til et match. Drik 1 tår hvis du ikke har tinder",
+    "Pigerne drikker",
+    "Alle singler drikker",
+    "Hvem er vildest dressed i dag. Personen må give 2 tåre ud",
+    "Hvad vil du helst: Have en trekant med Sussi og Leo eller spise McD-mad hver dag resten af dit liv?",
+    "Top or bottom i sengen? Alle stemmer samtidig – overtallet drikker",
+    "Udvælg sammen den største svagdrikker i rummet. Personen må dele 3 tåre ud",
+    "Drik kun med venstre resten af spillet. Bliver du taget i at bruge højre skal du drikke",
+    "Alle med lyst hår drikker 2 tåre, dem med brunt drikker 1 tår",
+    "Drik hvis du har postet en story i dag",
+    "Send en besked til Mads Gellert med ris/ros om Drukspillet",
+    "Hvem er mest tilbøjelig til at få en grim tatovering? Personen drikker 1 tår",
+    "Drik hvis du ikke har været i bad i dag",
+    "Den der oftest bruger flest penge i byen må give 2 slurke ud",
+    "Alle tager en tår for hvert lyn de fik i huen",
+    "Yngste spiller skal drikke",
+    "Hvis du kan gætte hvilken farve undertøj din sidemakker til højre har, skal de drikke 2 tåre - hvis ikke drikker du 1 tår",
+    "Den næste der har fødselsdag skal drikke",
+    "Kiss or Slap med den nærmeste sidemakker til højre af modsatte køn (sidemakkeren kisser/slapper)",
+    "Drik ikke før det er din tur igen. Hvis du bliver taget i at drikke, skal du bunde din drink",
+    "Alle tager en tår for hvert lyn de har givet",
+    "Fortæl en historie som både kan være sket, da du var barn eller fulde. Drik hvis de andre gætter rigtigt og omvendt",
+    "Svar på en sandhed de andre stiller dig, eller drik 5 tåre",
+    "Er i tørstige? - Alle bunder deres drink",
+    "Drik hvis du har haft sex med en i dette rum",
+    "Drik hvis du har lavet noget med en i dette rum ;D",
+    "Udfør en konsekvens som de andre finder på til dig, eller drik 5 tåre",
+    "Fuck, Marry, Kill – de andre vælger 3 navne til dig",
+    "Spil chancen. De andre finder på en chance fra 1 til 10 til dig",
+    "Alle der drikker øl tager en slurk",
+    "Alle der drikker saftevand (breezer, mokai, shaker osv) tager en slurk",
+    "Drik hvis du har tinder",
+    "Hvem er mest tilbøjelig til at starte en slåskamp? Personen drikker 1 tår",
+    "Drik hvis du skal score i aften",
+    "Drik hvis du har haft en bolleven",
+    "Alle der er lavere end den person der trak 'kortet' skal drikke",
+    "Drik lige så mange slurke som størrelsen på din BH (må tildeles næste pige i rækken). A=1, B=2, C=3 osv.",
+    "Alle der har et kondom på sig drikker 2 slurke",
+    "Tag en slurk af din drink uden at bruge dine hænder",
+    "Den højeste spiller skal drikke",
+    "Drengene drikker",
+    "Hvem i dette rum er mest tilbøjelig til at melde sig til Paradise/True Love/Bachelorette/Ex on the Beach? Personen må give 1 tår ud",
+    "Peg på den der har lavet den største fulde-bommert - personen drikker og fortæller historien",
+    "Drik 3 tåre hvis du har en kæreste",
+    "Ældste spiller drikker",
+    "Drik hvis du har set porno med en partner",
+    "Hvad vil du helst: Slikke på tåen af den person, der sidder til højre for dig, eller snave den person, der sidder til venstre for dig?",
+    "Alle der har haft farvet deres hår drikker",
+    "Den laveste spiller drikker",
+    "Fuck, Marry, Kill – de andre vælger 3 navne til dig",
+    "Nyn en sang de andre skal gætte. Den der gætter rigtigt må give en tår ud, hvis ikke drikker du", 
+    "Hvem i dette rum et mest tilbøjelig at have lavet et sex-tape? Personen drikker 1 tår",
+    "Pigen med den største BH må dele 2 slurke ud", 
+    "Kiss or Slap med den nærmeste sidemakker til venstre af modsatte køn (sidemakkeren kisser/slapper)", 
+    "Alle peger på den med dårligste stedsans. Han/hun drikker", 
+    "Drik hvis du er bundløs",
+    "Bund din drink eller giv Mads en drink",
+    "Fortæl din pinligste sex oplevelse",
+    "Peg på den flotteste af hvert køn i lokalet eller drik 3 slurke/shots",
+    "Strip! Du og en som du vælger smider et stykke tøj",
+    "Kys den du har det bedste øje til ved bordet eller drik 3 slurke / 1 shot",
+    "Spil 'Svar med et spørgsmål'. Peg på én og stil et spørgsmål. Personen stiller et nyt spørgsmål til en anden - det skal gå hurtigt. Drik hvis du fucker up!"
+
+    ];
+    var currentIndex = 0;
+
+    function shuffleArray(array) {
+      for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+      return array;
+    }
+
+    function showPreviousText() {
+      currentIndex--;
+      if (currentIndex < 0) {
+        currentIndex = texts.length - 1;
+      }
+      document.getElementById("text").innerHTML = texts[currentIndex];
+    }
+
+    function showNextText() {
+      currentIndex++;
+      if (currentIndex >= texts.length) {
+        currentIndex = 0;
+      }
+      document.getElementById("text").innerHTML = texts[currentIndex];
+    }
+    
+    function swipeText(event) {
+  if (event.deltaX > 0) {
+    showPreviousText();
+  } else {
+    showNextText();
+  }
+}
+
+var hammertime = new Hammer(document.body);
+hammertime.on("swipeleft swiperight", swipeText);
+
+
+    shuffleArray(texts);
+  </script>
+</head>
+<body>
+    
+    <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+        // Registreringen lykkedes
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }, function(err) {
+        // Registreringen fejlede
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
+  }
+</script>
+
+    
+  <h1>Drukspillet</h1>
+  <p id="text">Velkommen</p>
+  <button onclick="showPreviousText()">Forrige</button>
+  <button onclick="showNextText()">Næste</button>
+  <div id="background-img"></div>
+   <t2>Lavet af Mads Gellert</t2>
+</body>
+</html>
