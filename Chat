@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Drukspillet">
+  <meta name="description" content="Det ultimative drukspil til festen!">
+  <title>Drukspillet</title>
+  
+  <!-- App-ikon -->
+  <link rel="apple-touch-icon" sizes="192x192" href="app-ikon2.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="app-ikon2.png">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Stil -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #ffffff, #e0f7fa);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #00695c;
+      color: white;
+      width: 100%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    header h1 {
+      font-size: 2.5em;
+      margin: 0;
+    }
+    main {
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+    }
+    #text {
+      font-size: 1.5em;
+      margin: 20px 0;
+      padding: 20px;
+      background: #e0f2f1;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      background-color: #00796b;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    button:hover {
+      background-color: #004d40;
+      transform: scale(1.05);
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #666;
+    }
+    @media (max-width: 767px) {
+      header h1 {
+        font-size: 2em;
+      }
+      #text {
+        font-size: 1.2em;
+      }
+      button {
+        font-size: 1em;
+        padding: 10px 20px;
+      }
+    }
+  </style>
+
+  <!-- Funktionalitet -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const texts = [
+        "Mindste skostørrelse drikker",
+        "Hvem i dette rum har den højeste bodycount? Personen må dele antallet ud i slurke.",
+        "Din mission i aften er at stjæle et par solbriller på floor.",
+        "Din mission i aften er at bilde en fremmed ind, at du ikke kan finde vej hjem, MEN du må ikke snakke dansk eller engelsk.",
+        "Send link til spillet til 3 af dine venner.",
+        "Mim en af de andre spillere - de andre skal gætte hvem. Alle tager en tår.",
+        "Stå op indtil det er din tur igen.",
+        "Hvem er mest tilbøjelig til at få nye venner i byen? Personen drikker 2 tåre.",
+        "Hvem er mest tilbøjelig til at foreslå en tur på stripklub? Personen drikker 1 tår.",
+        "Mim et dyr - de andre skal gætte det. Den første der gætter rigtigt, giver 3 slurke ud.",
+        "Personen med lavest batteriprocent må give 2 slurke ud.",
+        "Classic eller Pilsner? Alle stemmer på samme tid – mindretallet drikker.",
+        "[Alle] Drik hvis du i hemmelighed har haft et crush på en i rummet.",
+        "[Alle] Drik for hver tatovering du har og vis dem frem. Antallet af tatoveringer = antal tåre du må give ud.",
+        "Fuck, Marry, Kill – de andre vælger 3 navne til dig.",
+        "Hvem er mest tilbøjelig til at fake en sygedag for at slippe for arbejde? Personen drikker.",
+        "Hvis du har Tinder, skal du swipe til højre i 1 minut. Hvis ikke, drik 1 tår.",
+        "Pigerne drikker.",
+        "[Alle] De næste 5 minutter drikker drengene dobbelt op.",
+        "[Alle] Drik hvis du har postet en story i dag.",
+        "[Alle] Drik hvis du har set porno med en partner.",
+        "Fortæl din pinligste sex-oplevelse.",
+        "Kys den du har det bedste øje til ved bordet eller drik 3 slurke.",
+        "Spil 'Svar med et spørgsmål'. Peg på én og stil et spørgsmål. Personen stiller et nyt spørgsmål til en anden - det skal gå hurtigt. Drik hvis du fucker op!"
+      ];
+
+      let currentIndex = 0;
+
+      const textElement = document.getElementById("text");
+      const prevButton = document.getElementById("prev-button");
+      const nextButton = document.getElementById("next-button");
+
+      const updateText = () => {
+        textElement.textContent = texts[currentIndex];
+      };
+
+      prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + texts.length) % texts.length;
+        updateText();
+      });
+
+      nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % texts.length;
+        updateText();
+      });
+
+      // Start med en tilfældig tekst
+      currentIndex = Math.floor(Math.random() * texts.length);
+      updateText();
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Drukspillet</h1>
+  </header>
+  <main>
+    <p id="text">Regler: Mobilen går på tur uden at skippe spørgsmål. [Alle] = gælder alle deltagere.</p>
+    <button id="prev-button" aria-label="Forrige tekst">Forrige</button>
+    <button id="next-button" aria-label="Næste tekst">Næste</button>
+  </main>
+  <footer>
+    Lavet af Mads Gellert | © 2025
+  </footer>
+</body>
+</html>
